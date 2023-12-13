@@ -1,8 +1,8 @@
 import Link from "next/link";
-
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import DynamoDBOperations from "~/app/_components/dynamodb";
 
 export default async function Home() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -54,6 +54,8 @@ export default async function Home() {
               {session ? "Sign out" : "Sign in"}
             </Link>
           </div>
+          <h1>DynamoDB Operations</h1>
+          <DynamoDBOperations />
         </div>
 
         <CrudShowcase />
